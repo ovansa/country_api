@@ -5,9 +5,9 @@ from country.serializers import CountrySerializer, StateSerializer, \
 from django_filters.rest_framework import DjangoFilterBackend
 from country.filters import StateListFilter
 
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
+# from rest_framework import viewsets
+# from rest_framework.response import Response
+# from rest_framework import status
 
 
 # ---------------------------------------------------
@@ -18,13 +18,15 @@ class CountryList(generics.ListCreateAPIView):
     queryset = Country.objects.all().order_by('name')
     serializer_class = CountrySerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data, many=True)
-        if serializer.is_valid():
-            serializer.save()
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def create(self, request, *args, **kwargs):
+    #     serializer = self.get_serializer(data=request.data, many=True)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         headers = self.get_success_headers(serializer.data)
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED,
+    # headers=headers)
+    #     return Response(serializer.errors,
+    # status=status.HTTP_400_BAD_REQUEST)
 
 
 class CountryDetail(generics.RetrieveUpdateAPIView):
