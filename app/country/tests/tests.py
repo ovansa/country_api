@@ -8,7 +8,8 @@ from country.models import Country  # State, City
 from country.serializers import CountrySerializer
 
 
-COUNTRY_URL = reverse('country:country-list')
+# COUNTRY_URL = reverse('country:country-list')
+COUNTRY_URL = 'http://127.0.0.1:8000/country/'
 
 
 class APITests(TestCase):
@@ -26,15 +27,11 @@ class APITests(TestCase):
                                alpha3code='GHA', region='Africa')
 
         client = APIClient()
-        res = client.get(COUNTRY_URL)
+        res = client.get("http://127.0.0.1:8000/country/")
 
         countries = Country.objects.all()
 
         serializer = CountrySerializer(countries, many=True)
-
-        print(res.data)
-        print('\n')
-        print(serializer.data)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
@@ -49,7 +46,7 @@ class APITests(TestCase):
             'region': 'Africa'
         }
 
-        res = self.client.post(COUNTRY_URL, payload)
+        res = self.client.post("http://127.0.0.1:8000/country/", payload)
 
         exists = Country.objects.filter(
             name=payload['name']
@@ -77,7 +74,7 @@ class APITests(TestCase):
             'region': 'Africa'
         }
 
-        self.client.post(COUNTRY_URL, payload1)
-        res2 = self.client.post(COUNTRY_URL, payload2)
+        self.client.post("http://127.0.0.1:8000/country/", payload1)
+        res2 = self.client.post("http://127.0.0.1:8000/country/", payload2)
 
         self.assertEqual(res2.status_code, status.HTTP_400_BAD_REQUEST)

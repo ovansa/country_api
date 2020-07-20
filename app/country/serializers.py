@@ -13,7 +13,7 @@ class CitySerializer(serializers.ModelSerializer):
 class StateSerializer(serializers.ModelSerializer):
     '''Serializer for State Model'''
     cities = CitySerializer(many=True, read_only=True)
-    country = serializers.ReadOnlyField(source='country.name')
+    # country = serializers.ReadOnlyField(source='country.name')
     # Check and add source
 
     class Meta:
