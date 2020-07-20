@@ -10,7 +10,7 @@ PROJECT_BASE_PATH='/usr/local/apps/country_api'
 echo "Installing dependencies..."
 apt-get update
 
-apt-get install -y python3-dev python3-venv python-pip-whl supervisor nginx git postgresql-client gcc libc6-dev gcc musl-dev linux-headers-4.15.0-101-generic libpq-dev
+apt-get install -y python3-dev python3-venv python-pip-whl supervisor nginx git postgresql-client gcc libc6-dev gcc musl-dev linux-headers-5.4.0-37-generic libpq-dev
 # Create project directory
 mkdir -p $PROJECT_BASE_PATH
 git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH
